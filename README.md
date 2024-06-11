@@ -113,7 +113,7 @@
     + IP주소 (인터넷 주소)
         - IPv4 기준의 4바이트 IP주소는 네트워크 주소와 호스트(컴퓨터) 주소로 나뉨.
         - 주소의 형태에 따라서 A(0~127, 첫번째비트 0), B(128~191, 첫번째비트 10), C(192~223, 첫번째비트 110), D, E클래스로 분류됨. (E는 일반적이지 않은 예약된 주소 체계)
-        ![IPv4 주소체계]()
+        ![IPv4 주소체계](https://raw.githubusercontent.com/Juhyi/Bascic-Network-Programming-2024/main/imges/net001.png)
 
     + Port (포트번호)
         - 클라이언트 프로그램이 네트워크 상의 특정 서버 프로그램을 지정하는 방법으로 사용. 지금 실행되고 있는 프로그램
@@ -140,6 +140,9 @@
         - CPU의 데이터 저장방식을 의미하는 '호스트 바이트 순서(Host Byte Order)'는 CPU마다 다름
         - 문제해결을 위해 네트워크상으로 데이터를 전송할 때 데이터의 배열을 "빅 엔디안" 방식으로 통일(네트워크 바이트 순서)
         - 리틀 엔디안 시스템에서는 데이터를 전송하기 전에 빅 엔디안 정렬방식으로 재정렬 해야함.
+
+        ![빅/리틀 에디안](https://raw.githubusercontent.com/Juhyi/Bascic-Network-Programming-2024/main/imges/net002.png)
+
 
     + 바이트 순서의 변환(Endian Conversions)
         - unsigned short htons(usigned short); shott형 데이터를 호스트 바이트 순서에서 네트워크 바이트 순서로 변환
