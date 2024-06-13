@@ -368,6 +368,6 @@
             - 부모 프로세스가 종료되면 좀비 상태였던 자식 프로세스도 함께 소멸하기 때문.
         ![좀비프로세스 생성 전](https://raw.githubusercontent.com/Juhyi/Bascic-Network-Programming-2024/main/imges/net003.png)
 
-    ![좀비프로세스 생성 확인](https://raw.githubusercontent.com/Juhyi/Bascic-Network-Programming-2024/main/imges/net004.png)
+        ![좀비프로세스 생성 확인](https://raw.githubusercontent.com/Juhyi/Bascic-Network-Programming-2024/main/imges/net004.png)
 
 
