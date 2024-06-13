@@ -366,8 +366,8 @@
         - 현재 실행중인 프로세스 확인 - cmd에서 ps au 입력
         - 자식 프로세스의 종료 값을 반환 받을 부모 프로세스가 소멸되기 전에 좀비의 생성 확인해야함.
             - 부모 프로세스가 종료되면 좀비 상태였던 자식 프로세스도 함께 소멸하기 때문.
-    ![좀비프로세스 생성 전](https://raw.githubusercontent.com/Juhyi/Bascic-Network-Programming-2024/main/imges/net003.png)
+        ![좀비프로세스 생성 전](https://raw.githubusercontent.com/Juhyi/Bascic-Network-Programming-2024/main/imges/net003.png)
 
-    ![좀비프로세스 생성 확인](https://raw.githubusercontent.com/Juhyi/Bascic-Network-Programming-2024/main/imges/net003.png)
+    ![좀비프로세스 생성 확인](https://raw.githubusercontent.com/Juhyi/Bascic-Network-Programming-2024/main/imges/net004.png)
 
 
