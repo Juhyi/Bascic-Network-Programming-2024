@@ -320,7 +320,7 @@
 
 
 ## 3일차 (2024-06-13)
-* 157~
+* 157~ 227
 
 * reseadr_eserver.c 실행파일 - ch.4 echo_client.c의 실행파일 eclient와 같이 실행하여 결과 확인하기 
     - client에서 먼저 연결 종료를 요청하는 경우에는 문제 발생 X 
@@ -366,8 +366,63 @@
         - 현재 실행중인 프로세스 확인 - cmd에서 ps au 입력
         - 자식 프로세스의 종료 값을 반환 받을 부모 프로세스가 소멸되기 전에 좀비의 생성 확인해야함.
             - 부모 프로세스가 종료되면 좀비 상태였던 자식 프로세스도 함께 소멸하기 때문.
+
+
         ![좀비프로세스 생성 전](https://raw.githubusercontent.com/Juhyi/Bascic-Network-Programming-2024/main/imges/net003.png)
 
         ![좀비프로세스 생성 확인](https://raw.githubusercontent.com/Juhyi/Bascic-Network-Programming-2024/main/imges/net004.png)
 
+## 4일차 (2024-06-14)
+- 좀비 프로세스 소멸
+    - 1. wait() 함수 사용 
+    
+        ```C
+        #include <sys/wait.h>
+        pid_t wait(int * statloc);
+        ```
+        - 반환 : 성공 시 종료된 자식 프로세스의 ID, 실패 시 -1
+        - WIFEXITED : 자식 프로세스가 정상 종료한 경우 true 반환
+        - WEXITSTATUS : 자식 프로세스의 전달 값 반환
+        - wait 함수는 자식 프로세스가 종료되지 않은 상황에서는 반환하지 않고 블로킹 상태에 놓임 -> 이걸 해결한 것이 waitpid() 함수
+    
+    - 2. waitpid() 함수 사용
 
+        ```C
+        #include <sys/wait.h>
+        pid_t waitpid(pid_t pid, int * statloc int options);
+        ```
+        - 반환 : 성공 시 종료된 자식 프로세스의 ID(or 0), 실패 시 -1 반환
+        - 매개변수 1. pid - 종료를 확인하고자 하는 자식 프로세스의 ID 전달. ID 대신에 -1을 전달하면 wait함수와 마찬가지로 동작(블로킹 상태)
+        - 매개변수 2. statloc - wait 함수의 매개변수와 동일.
+        - 매개변수 3. option - 헤더파일 sys/wait.h에 선언된 상수 WINOHANG을 인자로 전달하면, 종료된 자식 프로세스가 존재하지 않아도 블로킹 상태에 있지 않음 -> 0을 반환하면서 함수 탈출.
+        - 즉, 블로킹 상태에 놓이지 않게 할수 있는 함수!
+
+- 시그널 핸들링
+    - 부모 프로세스가 자식프로세스의 종료를 기다리면서 waitpid 함수만 호출할 수 없기 때문에 운영체제 (자식프로세스 종료를 인식하는 것은 운영체제 이므로)가 시그널을 주면 이런 문제를 해결할 수 있음. 이런 프로그램의 구현을 위해서 시그널 핸들링이 존재.
+    
+    - 시그널 : 특정 상황이 되면 운영체제가 프로세스에게 해당 상황이 발생했다는 것을 알리는 메세지
+    - 시그널 핸들링 : 그 메시지에 반으애서 메시지와 연관된 미리 정의된 작업이 진행되는 것.
+    - 시그널 등록 :
+        -  특정 상황에서 운영체제로부터 프로세스가 시그널을 받기 위해선 해당 상황에 대해 등록의 과정을 거쳐야한다.
+        - 즉, 프로게스는 자식 프로세스의 종료라는 상황 발생시, 특정 상황 발생시, 특정 함수의 호출을 운영체제에게 요구하는 것 -> 시그널 등록 함수의 호출을 통해 이루어짐. 
+        
+    - 시그널 등록 함수 
+        ``` C
+        #include <signal.h>
+        void (*signal(int signo, void(*func)(int)))(int);
+        ```
+        - 반환 : 이전에 등록된 함수의 포인터
+        - 매개변수 1. signo는 특정상황에 대한 정보를 전달
+        - 매개변수 2. (*func)(int) 는 특정 상황에서 호출될 함수의 주소값(포인터)을 전달.
+        - signal 함수를 통해 등록 가능한 상황, 상황에 할당된 상수
+            - SIGALRM : alarm 함수 호출을 통해서 등록된 시간이 된 상황
+            - SIGINT : CTRL+C가 입력된 상황
+            - SIGCHLD : 자식 프로세스가 종료된 상황
+
+        - 예제의 alarm () 함수
+            ```C
+            #include <unistd.h>
+            unsigned int alarm(sunsigned int seconds);
+            ```
+            - 반환 : 0 | SIGALRM 시그널이 발생하기까지 남은있는 시간(초단위)
+                 
