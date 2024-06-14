@@ -448,6 +448,7 @@
 
 - 시그널 핸들리을 통한 좀비 프로세스 소멸
     - 예제 실습
+    
     ![좀비 프로세스 소멸](https://raw.githubusercontent.com/Juhyi/Bascic-Network-Programming-2024/main/imges/net008.png)
 
 ***
@@ -455,7 +456,9 @@
 
 - 다중접속 서버의 구현
     - [프로세스 기반의 다중접속 서버모델]
-    ![프로세스 기반의 다중접속 서버모델](https://raw.githubusercontent.com/Juhyi/Bascic-Network-Programming-2024/main/imges/net005.png)
+        
+        
+        ![프로세스 기반의 다중접속 서버모델](https://raw.githubusercontent.com/Juhyi/Bascic-Network-Programming-2024/main/imges/net005.png)
 
     - 1단계 - 에코서버(부모 프로세스)는 accept 함수호출을 통해서 연결요청을 수락
     - 2단계 - 이때 얻게 되는 소켓의 파일 디스크립터를 자식 프로세스를 생성해서 넘겨준다.
@@ -466,11 +469,15 @@
     - 예제 실습
     [서버 실행화면] 
 
-     ![서버 실행화면](https://raw.githubusercontent.com/Juhyi/Bascic-Network-Programming-2024/main/imges/net006.png)
+
+         ![서버 실행화면](https://raw.githubusercontent.com/Juhyi/Bascic-Network-Programming-2024/main/imges/net006.png)
+
 
      [클라이언트 실행화면] 
 
-     ![클라이언트 실행화면](https://raw.githubusercontent.com/Juhyi/Bascic-Network-Programming-2024/main/imges/net007.png)
+
+         ![클라이언트 실행화면](https://raw.githubusercontent.com/Juhyi/Bascic-Network-Programming-2024/main/imges/net007.png)
+
 
 
 - fork 함수호출을 통한 파일 디스크립터의 복사
@@ -479,7 +486,8 @@
     - 만약, 소켓이 복사된다면 port에 할당된 소켓이 2개가 된다는 것 -> 하나의 운영체제 내에서는 동일한 PORT 번호를 둘 이상의 소켓에게 할당할 수 없기때문에 말이 안됨
     - 하나의 소켓에 두개의 파일 디스크립트가 존재하는 경우 -> 두 파일 디스크립터 모두 종료되어야 해당 소켓이 소멸하기 때문에 fork 함수호출 후에는 서로에게 상관없는 디스크립터를 종료한다. 
 
-    ![복사된 파일 디스크립터 정리](https://raw.githubusercontent.com/Juhyi/Bascic-Network-Programming-2024/main/imges/net009.png)
+
+    ![복사된 파일 디스크립터 정리](https://raw.githubusercontent.com/Juhyi/Bascic-Network-Programming-2024/main/imges/net9.png)
 
 
 - TCP의 입출력 루틴(Routine) 분할
@@ -512,7 +520,7 @@
     
     - pipe1.c 예제 (단방향 통신)
 
-        ![pipe 통신경로](https://raw.githubusercontent.com/Juhyi/Bascic-Network-Programming-2024/main/imges/net0010.png)
+        ![pipe 통신경로](https://raw.githubusercontent.com/Juhyi/Bascic-Network-Programming-2024/main/imges/net10.png)
 
         - 자식은 입력 경로에만 부모는 출력 경로에만 접근해서 통신을 했음.
     
