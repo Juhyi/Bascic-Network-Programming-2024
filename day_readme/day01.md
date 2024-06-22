@@ -92,16 +92,63 @@
     - 리눅스에서의 소켓조작은 파일조작과 동일함. 파일 입출력 함수를 소켓 입축력(네트워크상에서의 데이터 송수신)에 사용할 수 있음.
     *cf)윈도우는 구분함*
 
-    - 리눅스가 독립적으로 제공하는 파일 디스크립터 
+    - 리눅스가 독립적으로 제공하는(저수준) 파일 디스크립터 
         + 별도의 생성과정을 거치지 않아도 프로그램이 실행되면 자동으로 할당됨.
         + 0 - 표준입력 : Standard Input
         + 1 - 표준출력 : Standard Output
         + 2 - 표준에러 : Standard Error
 
     - 파일 열기
+        - 데이터를 읽거나 쓰기 위해 파일을 열 때 사용
+        ```C
+        #include <sys/types.h>
+        #include <sys/stat.h>
+        #include <fcntl.h>
+        int open(const char* path, int flag);
+        ```
+        - 반환 - 성공 시 파일 디스크립터, 실패 시 -1 
+        - 인자 
+            -  const char* path : 대상이 되는 파일의 이름 및 경로 정보
+            - int flag : 파일의 오픈 모드 정보(파일의 특성 정보)
+                - 하나 이상의 정보를 비트 or 연산자로(|) 묶어 전달 가능
+                - 종류
+                    - O_CREAT : 필요하면 파일 생성
+                    - O_TRUNC : 기존 데이터 전부 삭제
+                    - o_APPEND : 기존 데이터 보존하고, 뒤에 이어서 저장
+                    - o_RDONLY : 읽기 전용으로 파일 오픈
+                    - O_WRONLY: 쓰기 전용으로 파일 오픈
+                    - O_RDWR : 일기, 쓰기 겸용으로 파일 오픈
     - 파일 닫기
+        - 파일은 사용 후 반드시 닫아야함.
+        ```c
+        #include <unistd.h>
+        int close(int fd);
+        ```
+        - 반환 - 성공 시 0, 실패 시 -1 반환
+        - 인자
+            - int fd : 닫고자 하는 파일 또는 소켓의 파일 디스크립터
     - 파일 데이터 쓰기
+        - write() 함수를 호출하여 파일에 데이터를 출력(전송)
+            ```C
+            #include <unistd.h>
+            ssize_t write(int fd, const void* buf, size_t nbytes)
+            ```
+            - 반환 - 성공 시 전달한 바이트 수, 실패 시 -1 반환
+            - 인자
+                - int fd: 데이터 전송대상을 나타내는 파일 디스크립터
+                - const void* buf: 전송할 데이터가 저장된 버퍼의 주소 값
+                - size_t nbytes: 전송할 데이터의 바이트 수
     - 파일에 저장된 데이터 읽기
+        - read() 함수를 호출하여 데이터를 입력(수신)
+        ```C
+        #include <unistd.h>
+        ssize_t read(int fd, void* buf, size_t nbytes);
+        ```
+        - 성공 시 수신한 바이트 수(단, 파일의 끝을 만나면 0), 실패 시 -1 반환
+        - 인자
+            - int fd: 데이터 수신대상을 나타내는 파일 디스크립터
+            - void* buf: 수신한 데이터를 저장할 버퍼의 주소 값 전달
+            - size_t nbytes: 수신할 최대 바이트 수 전달
     - fd_seri.c 예제 
 
 * 소켓의 프로토콜, 데이터 전송 특성
