@@ -1,7 +1,7 @@
 # Basic-Network-2024
 리눅스 기반 네트워크 프로그래밍-2024 레포지토리
 
-## 1일차(2024-06-11) ![🔗자세한 내용 보기](https://github.com/Juhyi/Bascic-Network-Programming-2024/blob/main/day_readme/day01.md)
+## 1일차(2024-06-11) [🔗자세한 내용 보기](https://github.com/Juhyi/Bascic-Network-Programming-2024/blob/main/day_readme/day01.md)
 * 네트워크 프로그래밍, 소켓
     - 소켓 
     - 소켓 구현
