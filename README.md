@@ -76,7 +76,7 @@
     - 좀비 프로세스 생성 확인
         ![좀비프로세스 생성 확인](https://raw.githubusercontent.com/Juhyi/Bascic-Network-Programming-2024/main/imges/net004.png)
 
-## 4일차 (2024-06-14) ![🔗자세한 내용 보기](https://github.com/Juhyi/Bascic-Network-Programming-2024/blob/main/day_readme/day04.md)
+## 4일차 (2024-06-14) [🔗자세한 내용 보기](https://github.com/Juhyi/Bascic-Network-Programming-2024/blob/main/day_readme/day04.md)
 - 좀비 프로세스 소멸
     - 1. wait() 함수 사용 
     - 2. waitpid() 함수 사용
@@ -143,7 +143,7 @@
 - 멀티플렉싱 서버의 구현 
     - 예제 실습
 
-## 5일차(2024-06-17) ![🔗자세한 내용 보기](https://github.com/Juhyi/Bascic-Network-Programming-2024/blob/main/day_readme/day05.md)
+## 5일차(2024-06-17) [🔗자세한 내용 보기](https://github.com/Juhyi/Bascic-Network-Programming-2024/blob/main/day_readme/day05.md)
 - send & recv 입출력 함수
     - 예제 실행 결과 확인
         - 긴급으로 메시지가 전달된 흔적이 보이지 않음. 
@@ -209,7 +209,7 @@
         ![스트림 분리](https://raw.githubusercontent.com/Juhyi/Bascic-Network-Programming-2024/main/imges/net12.png)
         
 
-## 6일차 ![🔗자세한 내용 보기](https://github.com/Juhyi/Bascic-Network-Programming-2024/blob/main/day_readme/day06.md)
+## 6일차 [🔗자세한 내용 보기](https://github.com/Juhyi/Bascic-Network-Programming-2024/blob/main/day_readme/day06.md)
 - epoll의 이해
     - select 기반 IO 멀티플렉싱이 느린 이유
         1. select 함수 호출 이후에 항상 등장하는, 모든 디스크립터를 대상으로 하는 반복문
@@ -234,7 +234,7 @@
 
     - epoll_creat() 함수
 
-## 7일차 ![🔗자세한 내용 보기](https://github.com/Juhyi/Bascic-Network-Programming-2024/blob/main/day_readme/day07.md)
+## 7일차 [🔗자세한 내용 보기](https://github.com/Juhyi/Bascic-Network-Programming-2024/blob/main/day_readme/day07.md)
 - 개인평가
     - 라즈베리파이로 웹페이지 서버 구현하기
         - putty에서 ./실행파일명 포트번호 입력후
